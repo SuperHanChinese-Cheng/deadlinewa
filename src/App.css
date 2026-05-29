@@ -241,6 +241,52 @@
   box-shadow: none;
 }
 
+/* ---------- Custom date input (DD/MM/YYYY) ---------- */
+
+.date-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  padding: 2px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.date-input-row:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: var(--focus-ring);
+}
+
+.date-segment {
+  border: none !important;
+  background: transparent !important;
+  text-align: center;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  padding: 9px 0 !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.date-day,
+.date-month {
+  width: 40px;
+}
+
+.date-year {
+  width: 56px;
+}
+
+.date-separator {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  user-select: none;
+  flex-shrink: 0;
+}
+
 .error-message {
   color: var(--color-danger);
   font-size: 0.8125rem;

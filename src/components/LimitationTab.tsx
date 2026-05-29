@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { CauseOfAction, DeadlineResult, Jurisdiction } from "../types";
 import { CAUSES_OF_ACTION, JURISDICTIONS } from "../types";
 import { calculateLimitationDeadline } from "../engine/limitation";
+import { DateInput } from "./DateInput";
 
 interface TabProps {
   onResult: (result: DeadlineResult) => void;
@@ -18,7 +19,7 @@ export function LimitationTab({ onResult }: TabProps) {
     setError("");
 
     if (!accrualDate) {
-      setError("Please select an accrual date.");
+      setError("Please enter an accrual date.");
       return;
     }
 
@@ -65,15 +66,12 @@ export function LimitationTab({ onResult }: TabProps) {
           </select>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="accrualDate">Accrual Date</label>
-          <input
-            id="accrualDate"
-            type="date"
-            value={accrualDate}
-            onChange={(e) => setAccrualDate(e.target.value)}
-          />
-        </div>
+        <DateInput
+          id="accrualDate"
+          label="Accrual Date"
+          value={accrualDate}
+          onChange={setAccrualDate}
+        />
 
         {error && <p className="error-message">{error}</p>}
 

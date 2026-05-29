@@ -4,6 +4,7 @@ import { JURISDICTIONS } from "../types";
 import { addWorkingDays, countWorkingDays, diffCalendarDays } from "../engine/working-days";
 import { getPublicHolidays } from "../engine/public-holidays";
 import { parseDate } from "../engine/public-holidays";
+import { DateInput } from "./DateInput";
 
 interface TabProps {
   onResult: (result: DeadlineResult) => void;
@@ -85,15 +86,12 @@ export function WorkingDaysTab({ onResult }: TabProps) {
   return (
     <div className="tab-content">
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="startDate">Start Date</label>
-          <input
-            id="startDate"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </div>
+        <DateInput
+          id="startDate"
+          label="Start Date"
+          value={startDate}
+          onChange={setStartDate}
+        />
 
         <div className="form-group">
           <label htmlFor="numberOfDays">Number of Working Days</label>

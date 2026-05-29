@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { CourtDeadline, DeadlineResult } from "../types";
 import { getCourtNames, getCourtRules, calculateCourtDeadline } from "../engine/court-rules";
+import { DateInput } from "./DateInput";
 
 interface TabProps {
   onResult: (result: DeadlineResult) => void;
@@ -74,15 +75,12 @@ export function CourtDeadlineTab({ onResult }: TabProps) {
           </select>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="triggerDate">Trigger Date (e.g., date of service)</label>
-          <input
-            id="triggerDate"
-            type="date"
-            value={triggerDate}
-            onChange={(e) => setTriggerDate(e.target.value)}
-          />
-        </div>
+        <DateInput
+          id="triggerDate"
+          label="Trigger Date (e.g., date of service)"
+          value={triggerDate}
+          onChange={setTriggerDate}
+        />
 
         {error && <p className="error-message">{error}</p>}
 
