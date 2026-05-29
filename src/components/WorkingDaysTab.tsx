@@ -12,7 +12,7 @@ interface TabProps {
 
 export function WorkingDaysTab({ onResult }: TabProps) {
   const [startDate, setStartDate] = useState("");
-  const [numberOfDays, setNumberOfDays] = useState(21);
+  const [numberOfDays, setNumberOfDays] = useState<number | "">(21);
   const [jurisdiction, setJurisdiction] = useState<Jurisdiction>("WA");
   const [error, setError] = useState("");
 
@@ -24,7 +24,7 @@ export function WorkingDaysTab({ onResult }: TabProps) {
       setError("Please select a start date.");
       return;
     }
-    if (numberOfDays < 1) {
+    if (!numberOfDays || numberOfDays < 1) {
       setError("Number of working days must be at least 1.");
       return;
     }
@@ -100,7 +100,7 @@ export function WorkingDaysTab({ onResult }: TabProps) {
             type="number"
             min="1"
             value={numberOfDays}
-            onChange={(e) => setNumberOfDays(parseInt(e.target.value, 10) || 1)}
+            onChange={(e) => setNumberOfDays(e.target.value === "" ? "" : parseInt(e.target.value, 10) || "")}
           />
         </div>
 
